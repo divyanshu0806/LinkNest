@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hubs - Linker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-black text-gray-100">
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="p-5">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                        <span class="font-bold text-xl text-black">S</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">SmartLinkX</span>
+                </div>
+                <nav class="space-y-1">
+                    <a href="../HomePage/index.html" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900">
+                        <i class="fas fa-chart-bar w-5"></i><span class="text-sm">Overview</span>
+                    </a>
+                    <a href="../Analytics/index.html" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900">
+                        <i class="fas fa-chart-line w-5"></i><span class="text-sm">Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg bg-green-500 bg-opacity-10 text-green-500">
+                        <i class="fas fa-link w-5"></i><span class="text-sm font-medium">My Hubs</span>
+                    </a>
+                    <a href="../AccountSettings/index.html" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900">
+                        <i class="fas fa-link w-5"></i><span class="text-sm">Account Settings</span>
+                    </a>
+                </nav>
+                <button id="createHubBtn" class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 font-medium text-sm">
+                    <i class="fas fa-plus"></i><span>Create New Hub</span>
+                </button>
+                <button id="logoutBtn" class="w-full mt-16 border border-zinc-700 text-gray-300 hover:bg-red-600 hover:text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm">
+                    <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <main class="min-h-screen">
+            <div class="border-b border-zinc-800 bg-black sticky top-0 z-40 px-8 py-6">
+                <div class="flex justify-between items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-xl text-gray-300 mr-4"><i class="fas fa-bars"></i></button>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-1">My Hubs</h1>
+                        <p class="text-gray-400 text-sm">Manage all your link hubs in one place</p>
+                    </div>
+                    <button class="px-5 py-2.5 border border-zinc-700 rounded-lg text-sm text-gray-300 hover:bg-zinc-900">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                </div>
+            </div>
+
+            <div class="px-8 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-4xl font-bold text-white" id="totalHubsCount">0</div>
+                            <i class="fas fa-folder text-green-500 text-2xl"></i>
+                        </div>
+                        <div class="text-sm text-gray-400">Total Hubs</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-4xl font-bold text-white" id="activeHubsCount">0</div>
+                            <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                        </div>
+                        <div class="text-sm text-gray-400">Active Hubs</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-4xl font-bold text-white" id="inactiveHubsCount">0</div>
+                            <i class="fas fa-pause-circle text-yellow-500 text-2xl"></i>
+                        </div>
+                        <div class="text-sm text-gray-400">Inactive Hubs</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-4xl font-bold text-white" id="totalViewsCount">0</div>
+                            <i class="fas fa-eye text-purple-500 text-2xl"></i>
+                        </div>
+                        <div class="text-sm text-gray-400">Total Views</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-4 mb-6">
+                    <div class="flex-1 relative w-full">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                        <input type="text" id="searchInput" placeholder="Search hubs..." class="w-full bg-zinc-900 border border-zinc-700 rounded-lg pl-11 pr-4 py-2.5 text-white">
+                    </div>
+                    <div class="flex items-center gap-2 bg-zinc-900 border border-zinc-700 rounded-lg p-1">
+                        <button class="filter-status active px-4 py-1.5 rounded-md text-sm" data-status="all">All</button>
+                        <button class="filter-status px-4 py-1.5 text-gray-400 rounded-md text-sm" data-status="active">Active</button>
+                    </div>
+                </div>
+
+                <div id="hubsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="editModal" class="fixed inset-0 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 z-[100] flex items-center justify-center">
+        <div class="modal-content bg-zinc-950 w-full max-w-3xl rounded-2xl border border-zinc-800 shadow-2xl transform translate-y-6 scale-95 opacity-0 transition-all duration-300 overflow-hidden">
+             <div class="px-8 py-6 text-center text-gray-500">Edit Hub Logic Loaded...</div>
+             <button onclick="closeEditModal()" class="m-4 text-sm text-gray-400">Close</button>
+        </div>
+    </div>
+
+    <div id="modalContainer"></div>
+    <script src="script.js"></script>
+    <script>
+        // Inline Mobile Toggle
+        function toggleSidebar() {
+            document.querySelector('.sidebar')?.classList.toggle('active');
+            document.querySelector('.sidebar-overlay')?.classList.toggle('active');
+        }
+
+        // Initialize Popup
+        fetch('../Popup/index.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('modalContainer').innerHTML = html;
+                const script = document.createElement('script');
+                script.src = '../Popup/script.js';
+                document.body.appendChild(script);
+            });
+    </script>
+</body>
+</html>

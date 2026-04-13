@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="forgot.css">
+</head>
+
+<body class="flex items-center justify-center p-6">
+    <div class="glass-container">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-2">Reset Password</h1>
+            <p class="text-gray-400">Enter your email to receive a recovery link</p>
+        </div>
+
+        <form id="forgotForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-semibold mb-2">Email Address</label>
+                <input type="email" placeholder="Enter your email" required
+                    class="input-field w-full px-4 py-3 rounded-lg">
+            </div>
+
+            <button type="submit" class="btn-primary w-full py-3 rounded-lg text-black font-bold text-lg">Send Reset
+                Link</button>
+        </form>
+
+        <p class="text-center text-gray-400 text-sm mt-8">
+            Remember your password? <a href="signin.html" class="text-green-500 font-semibold hover:underline">Back to
+                Sign In</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('forgotForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('If an account exists for that email, a reset link has been sent.');
+        });
+    </script>
+</body>
+
+</html>

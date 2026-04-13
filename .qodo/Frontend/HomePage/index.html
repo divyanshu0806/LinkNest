@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLinkX Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+  
+
+</head>
+
+<body class="bg-black text-gray-100">
+
+    <!-- ===== DASHBOARD WRAPPER (ADDED) ===== -->
+    <div class="dashboard">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar bg-zinc-950 border-r border-zinc-800">
+            <div class="p-5">
+
+                <!-- Logo -->
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                      <span class="font-bold text-xl text-black">S</span>
+                    </div>
+
+                    <span class="text-xl font-bold text-white">SmartLinkX</span>
+                </div>
+
+                <div class="text-xs text-gray-500 mb-2 px-3">Dashboard</div>
+
+                <!-- Navigation -->
+                <nav class="space-y-1">
+                    <a href="../HomePage/index.html"
+                        class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg bg-green-500 bg-opacity-10 text-green-500">
+                        <i class="fas fa-chart-bar w-5"></i>
+                        <span class="text-sm font-medium">Overview</span>
+                    </a>
+
+                    <a href="../Analytics/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span class="text-sm font-medium">Analytics</span>
+                    </a>
+
+                    <a href="../MyHubs/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-link w-5"></i>
+                        <span class="text-sm">My Hubs</span>
+                    </a>
+
+                    <a href="../AccountSettings/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-link w-5"></i>
+                        <span class="text-sm">Account Settings</span>
+                    </a>
+                </nav>
+
+                <!-- Create Hub Button -->
+                <button id="createHubBtn"
+                    class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm">
+                    <i class="fas fa-plus"></i>
+                    <span>Create New Hub</span>
+                </button>
+                <div class="mt-auto">
+            <!-- Logout -->
+<button id="logoutBtn"
+    class="w-full mt-3 border border-zinc-700 text-gray-300 hover:bg-red-600 hover:border-red-600 hover:text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm mt-16">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Log Out</span>
+</button>
+
+        </div>
+            </div>
+            
+        </aside>
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="min-h-screen">
+
+            <!-- Header -->
+            <button onclick="toggleSidebar()" class="md:hidden text-gray-300 text-xl">
+            <i class="fas fa-bars"></i>
+            </button>
+
+    <!-- Main Content -->
+    <div class=" min-h-screen">
+        <!-- Header -->
+        <div class="border-b border-zinc-800 bg-black sticky top-0 z-40">
+            <div class="px-8 py-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white"> Welcome back, <span id="welcomeName">User</span></h1>
+                        <p class="text-gray-400 text-sm">Here's what's happening with your links today.</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+<!-- changed till here for layout for mobile -->
+
+        <div class="px-8 py-8">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Total Hubs -->
+                <a href="../MyHubs/index.html" style="text-decoration: none; color: inherit;">
+                <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-link text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center gap-1 text-green-500 text-sm font-medium">
+                            <i class="fas fa-arrow-up text-xs"></i>
+                            <span>+2.5%</span>
+                        </div>
+                    </div>
+                    <div id="totalHubs" class="text-4xl font-bold text-white mb-1">0</div>
+
+                    <div class="text-sm text-gray-400">Total Hubs</div>
+                    
+                </div></a>
+
+                <!-- Total Links -->
+                 <a href="../MyHubs/index.html" style="text-decoration: none; color: inherit;">
+                <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-link text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center gap-1 text-green-500 text-sm font-medium">
+                            <i class="fas fa-arrow-up text-xs"></i>
+                            <span>+12.3%</span>
+                        </div>
+                    </div>
+                 <div id="totalLinks" class="text-4xl font-bold text-white mb-1">0</div>
+
+                    <div class="text-sm text-gray-400">Total Links</div>
+                </div></a>
+                
+                <!-- Total Clicks -->
+                <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-mouse-pointer text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center gap-1 text-green-500 text-sm font-medium">
+                            <i class="fas fa-arrow-up text-xs"></i>
+                            <span>+8.1%</span>
+                        </div>
+                    </div>
+                    <div class="text-4xl font-bold text-white mb-1">2,341</div>
+                    <div class="text-sm text-gray-400">Total Clicks</div>
+                </div>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Left Column (2/3 width) -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Profile Overview -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-white">Profile Overview</h2>
+                            <button class="text-gray-400 hover:text-white">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    id="profileAvatar"
+                                    class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-green-400 to-green-600">
+                                    V
+                                </div>
+                                <div>
+                                    <h3 id="profileName" class="text-xl font-bold text-white mb-1">Vinayak Aggarwal</h3>
+                                    <p id="profileBio" class="text-sm text-gray-400">B Tech CSE | Video Editor | 5th Finalist 2025</p>
+                                    <div class="flex items-center gap-2 mt-3 bg-zinc-900 px-3 py-2 rounded-lg w-fit">
+                                        <i class="fas fa-link text-gray-400 text-xs"></i>
+                                        <span class="text-sm text-gray-300 font-mono">yourapp.com/r/U-John-Doe</span>
+                                        <button onclick="copyLink()"
+                                            class="text-gray-400 hover:text-green-500 transition-colors">
+                                            <i class="fas fa-copy text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                id="profileShareBtn"
+                                class="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 transition-all font-medium">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Your Hubs -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-white">Your Hubs</h2>
+                            <a href="../MyHubs/index.html"
+                                class="text-green-500 hover:text-green-400 text-sm font-medium flex items-center gap-1">
+                                View all hubs
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- John's Links Hub -->
+                            <div
+                                class="hub-card border border-zinc-700 rounded-lg p-5 hover:border-green-500 transition-all">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-3xl">📋</div>
+                                        <div>
+                                            <h3 class="font-semibold text-white">John's Links</h3>
+                                            <div class="flex items-center gap-2 mt-1">
+                                                <i class="far fa-clock text-gray-500 text-xs"></i>
+                                                <span class="text-xs text-gray-400">2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="bg-green-500 bg-opacity-10 text-green-500 text-xs px-2 py-1 rounded-full font-medium">Active</span>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-4 mb-4">
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">234</div>
+                                        <div class="text-xs text-gray-400">Views</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">88</div>
+                                        <div class="text-xs text-gray-400">Clicks</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">6</div>
+                                        <div class="text-xs text-gray-400">Links</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <a href="../MyHubs/index.html">
+                                    <button 
+                                        class="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2">
+                                        <i class="fas fa-edit"></i>
+                                        Edit on Hub
+                                    </button></a>
+                                    <button
+                                        class="flex-1 border border-zinc-700 hover:border-zinc-600 text-gray-300 px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center gap-2">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <a href="../Analytics/index.html?hub=${hub.slug}">Analytics</a>
+
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- My Store Hub -->
+                            <div
+                                class="hub-card border border-zinc-700 rounded-lg p-5 hover:border-green-500 transition-all">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-3xl">🛍️</div>
+                                        <div>
+                                            <h3 class="font-semibold text-white">My Store</h3>
+                                            <div class="flex items-center gap-2 mt-1">
+                                                <i class="far fa-clock text-gray-500 text-xs"></i>
+                                                <span class="text-xs text-gray-400">5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="bg-green-500 bg-opacity-10 text-green-500 text-xs px-2 py-1 rounded-full font-medium">Active</span>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-4 mb-4">
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">12K</div>
+                                        <div class="text-xs text-gray-400">Views</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">234</div>
+                                        <div class="text-xs text-gray-400">Clicks</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-white">5</div>
+                                        <div class="text-xs text-gray-400">Links</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <a href="../MyHubs/index.html">
+                                    <button 
+                                        class="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2">
+                                        <i class="fas fa-edit"></i>
+                                        Edit on Hub
+                                    </button></a>
+
+                                    <button
+                                        class="flex-1 border border-zinc-700 hover:border-zinc-600 text-gray-300 px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center gap-2">
+                                        <i class="fas fa-chart-bar"></i>
+                                       <a href="../Analytics/index.html">Analytics</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-6">Recent Activity</h2>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="activity-dot mt-1.5"></span>
+                                <div class="flex-1">
+                                    <p class="text-white font-medium">John's Hub: 45 new views</p>
+                                    <p class="text-sm text-gray-400 mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="activity-dot mt-1.5"></span>
+                                <div class="flex-1">
+                                    <p class="text-white font-medium">Store Links: Link #3 got 12 clicks</p>
+                                    <p class="text-sm text-gray-400 mt-1">5h ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="activity-dot mt-1.5"></span>
+                                <div class="flex-1">
+                                    <p class="text-white font-medium">Portfolio: New rule activated</p>
+                                    <p class="text-sm text-gray-400 mt-1">1 day ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (1/3 width) -->
+                <div class="lg:col-span-1">
+  <div class="sticky top-28">
+    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+      <h2 class="text-xl font-bold text-white mb-6">Live Preview</h2>
+
+      <!-- Mobile Phone Mockup -->
+      <div
+        class="mobile-preview bg-zinc-900 border-4 border-zinc-800 rounded-3xl p-4 mx-auto"
+        style="max-width: 280px;"
+      >
+        <!-- Phone Notch -->
+        <div class="bg-black h-6 w-32 mx-auto rounded-b-2xl mb-4"></div>
+
+        <!-- Phone Content -->
+        <div class="bg-white rounded-2xl p-6 text-center">
+          
+          <!-- ✅ PROFILE AVATAR -->
+          <div
+            id="phoneAvatar"
+            class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full
+                   flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4"
+          >
+            V
+          </div>
+
+          <!-- ✅ NAME -->
+          <h3
+            id="phoneName"
+            class="text-lg font-bold text-black mb-1"
+          >
+            Vinayak Aggarwal
+          </h3>
+
+          <!-- ✅ BIO -->
+          <p
+            id="phoneBio"
+            class="text-xs text-gray-600 mb-6"
+          >
+            B Tech CSE | Video Editor | 5th Finalist 2025
+          </p>
+
+          <!-- Links (unchanged for now) -->
+          <div id="phoneLinks" class="space-y-3">
+            <div class="link-item bg-gray-100 hover:bg-gray-200 px-4 py-3 rounded-lg text-sm text-black font-medium flex items-center justify-between">
+              <span>Visit my website</span>
+              <i class="fas fa-external-link-alt text-gray-500 text-xs"></i>
+            </div>
+          </div>
+
+          <!-- Powered by -->
+          <div class="mt-6 pt-4 border-t border-gray-200">
+            <p class="text-xs text-gray-500">Powered by</p>
+            <p class="text-sm font-bold text-black mt-1">LINKER</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Load Popup Modal Styles -->
+    <link rel="stylesheet" href="../Popup/style.css">
+
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+
+    <!-- Load and Initialize Popup -->
+    <script>
+    // Load the popup HTML
+    fetch('../Popup/index.html')
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const modal = doc.querySelector('#createHubModal');
+
+            if (modal) {
+                document.getElementById('modalContainer').appendChild(modal);
+
+                const script = document.createElement('script');
+                script.src = '../Popup/script.js';
+                document.body.appendChild(script);
+
+                script.onload = function () {
+                    const createBtn = document.getElementById('createHubBtn');
+
+                    if (createBtn) {
+                        createBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // Close sidebar on mobile (if open)
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+
+    // Open popup
+    if (window.openHubModal) {
+        window.openHubModal();
+    } else {
+        console.error('openHubModal not found');
+    }
+    });
+
+                    } else {
+                        console.error('createHubBtn not found');
+                    }
+                };
+            }
+        })
+        .catch(error => console.error('Error loading modal:', error));
+
+    function toggleSidebar() {
+        document.querySelector('.sidebar')?.classList.toggle('active');
+        document.querySelector('.sidebar-overlay')?.classList.toggle('active');
+    }
+</script>
+
+<!-- ================= SHARE HUB MODAL ================= -->
+<div id="shareHubModal"
+  class="fixed inset-0 bg-black/70 hidden z-[200] flex items-center justify-center">
+
+  <div class="bg-zinc-950 w-full max-w-md rounded-xl border border-zinc-800 p-6">
+    
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-bold text-white">Share a Hub</h3>
+      <button onclick="closeShareModal()" class="text-gray-400 hover:text-white">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- HUB LIST -->
+    <div id="shareHubList" class="space-y-3 max-h-64 overflow-y-auto"></div>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>

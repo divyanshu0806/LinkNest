@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===============================
+   ANALYTICS UI EFFECTS
+   =============================== */
+
+.stat-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(34, 197, 94, 0.1);
+}
+
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* ===============================
+   GLOBAL LAYOUT (DESKTOP ORIGINAL)
+   =============================== */
+
+html, body {
+    overflow-x: hidden;
+}
+
+/* Original desktop dashboard layout */
+.dashboard {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar — desktop */
+.sidebar {
+    width: 260px;
+    background: #09090b;
+    border-right: 1px solid #27272a;
+    position: relative;
+}
+
+/* Main content — full width like before */
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ===============================
+   MOBILE SIDEBAR SYSTEM
+   =============================== */
+
+@media (max-width: 768px) {
+
+    /* One column layout */
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sidebar hidden off-canvas */
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100vh;
+        width: 260px;
+        z-index: 100;
+        transition: left 0.3s ease;
+        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Sidebar visible */
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Overlay behind sidebar */
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 90;
+        display: none;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    /* Mobile padding adjustments */
+    main .px-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    main .py-8 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}
+
+/* ===============================
+   RESTORE ORIGINAL DESKTOP LOOK
+   =============================== */
+
+@media (min-width: 769px) {
+
+    /* Force original 2-column layout */
+    .dashboard {
+        grid-template-columns: 260px 1fr;
+    }
+
+    /* Sidebar behaves like original */
+    .sidebar {
+        position: relative;
+        left: 0;
+        height: auto;
+        box-shadow: none;
+        z-index: auto;
+    }
+
+    /* Main content exactly like before */
+    main {
+        display: block;
+        max-width: none;
+        margin: 0;
+    }
+
+    /* Overlay never shows on desktop */
+    .sidebar-overlay {
+        display: none !important;
+    }
+}

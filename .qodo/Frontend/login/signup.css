@@ -1,0 +1,33 @@
+ body {
+            background-color: #0a0a0a;
+            min-height: 100vh;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field {
+            background: #050505;
+            border: 1px solid #1a2e1a;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #22c55e;
+            outline: none;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #22c55e;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #16a34a;
+        }
+
+        .glass-container {
+            max-width: 450px;
+            width: 100%;
+        }

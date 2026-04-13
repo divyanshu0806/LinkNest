@@ -1,0 +1,160 @@
+/* =========================================
+   1. Base & Reset
+   ========================================= */
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    transition: opacity 0.5s ease;
+}
+
+/* Prevent flash of unstyled content */
+body.hidden-opacity {
+    opacity: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(150, 150, 150, 0.5); border-radius: 10px; }
+
+/* =========================================
+   2. Font Classes
+   ========================================= */
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-roboto { font-family: 'Roboto', sans-serif; }
+.font-raleway { font-family: 'Raleway', sans-serif; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+.font-oswald { font-family: 'Oswald', sans-serif; }
+.font-pt-serif { font-family: 'PT Serif', serif; }
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-bodoni { font-family: 'Bodoni Moda', serif; }
+.font-bellota { font-family: 'Bellota', cursive; }
+.font-charm { font-family: 'Charm', cursive; }
+.font-courier { font-family: 'Courier Prime', monospace; }
+.font-mono { font-family: 'Roboto Mono', monospace; }
+
+/* =========================================
+   3. Link Card Styling (Viewer Version)
+   ========================================= */
+.link-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.link-card:hover, .link-card:active {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+}
+
+.link-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.link-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.link-title {
+    font-weight: 600;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Action Buttons (QR / Share) */
+.link-actions {
+    display: flex;
+    gap: 8px;
+    padding-left: 12px;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.05);
+    transition: all 0.2s;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.action-btn:hover {
+    background: rgba(0,0,0,0.1);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   4. Icon Brand Colors
+   ========================================= */
+.brand-youtube { color: #ef4444; }
+.brand-instagram { color: #e1306c; }
+.brand-twitter { color: #1da1f2; }
+.brand-linkedin { color: #0a66c2; }
+.brand-github { color: inherit; }
+.brand-spotify { color: #1db954; }
+.brand-facebook { color: #1877f2; }
+.brand-tiktok { color: #ff0050; }
+
+/* =========================================
+   5. Animations
+   ========================================= */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-in-down { animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+.link-card { opacity: 0; animation: fadeInUp 0.5s forwards; }
+.link-card:nth-child(1) { animation-delay: 0.1s; }
+.link-card:nth-child(2) { animation-delay: 0.2s; }
+.link-card:nth-child(3) { animation-delay: 0.3s; }
+.link-card:nth-child(4) { animation-delay: 0.4s; }
+.link-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* =========================================
+   6. Modal & Toast
+   ========================================= */
+#qrModal.flex .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#toast.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}

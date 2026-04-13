@@ -1,0 +1,61 @@
+/* Core Page Styles */
+body {
+    background-color: #0a0a0a !important;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Matte Grid Background */
+.grid-bg {
+    background-image:
+        linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Remove Glowing Text */
+.glow-text {
+    text-shadow: none !important;
+    color: #22c55e;
+}
+
+/* Matte Feature Cards */
+.feature-card {
+    background: #050505 !important;
+    border: 1px solid #1a1a1a !important;
+    box-shadow: none !important;
+    transition: border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: #22c55e !important;
+    background: #080808 !important;
+}
+
+/* Sign-In Style Primary Button */
+.btn-primary {
+    background-color: #22c55e !important;
+    color: #000000 !important;
+    font-weight: 600;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:hover {
+    background-color: #16a34a !important;
+}
+
+/* Subtle Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #22c55e;
+}

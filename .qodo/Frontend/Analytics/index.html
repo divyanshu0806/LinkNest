@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics: All Hubs - Linker</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="bg-black text-gray-100">
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+            <div class="p-5">
+                <div class="flex items-center gap-2 mb-8">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                      <span class="font-bold text-xl text-black">S</span>
+                    </div>
+
+                    <span class="text-xl font-bold text-white">SmartLinkX</span>
+                </div>
+
+                <div class="text-xs text-gray-500 mb-2 px-3">Dashboard</div>
+
+                <nav class="space-y-1">
+                    <a href="../HomePage/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-chart-bar w-5"></i>
+                        <span class="text-sm">Overview</span>
+                    </a>
+
+                    <a href="../Analytics/index.html"
+                        class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg bg-green-500 bg-opacity-10 text-green-500">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span class="text-sm font-medium">Analytics</span>
+                    </a>
+
+                    <a href="../MyHubs/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-link w-5"></i>
+                        <span class="text-sm">My Hubs</span>
+                    </a>
+
+                    <a href="../AccountSettings/index.html"
+                        class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                        <i class="fas fa-link w-5"></i>
+                        <span class="text-sm">Account Settings</span>
+                    </a>
+                </nav>
+
+                <button id="createHubBtn"
+                    class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm">
+                    <i class="fas fa-plus"></i>
+                    <span>Create New Hub</span>
+                </button>
+                
+                <button id="logoutBtn"
+                    class="w-full border border-zinc-700 text-gray-300 hover:bg-red-600 hover:border-red-600 hover:text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm mt-16">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <main class="min-h-screen">
+
+            <div class="border-b border-zinc-800 bg-black sticky top-0 z-40">
+                <div class="px-8 py-6">
+                    <div class="flex justify-between items-center gap-4">
+                        <button onclick="toggleSidebar()" class="md:hidden text-xl text-gray-300">
+                            <i class="fas fa-bars"></i>
+                        </button>
+
+                        <div>
+                            <h1 class="text-3xl font-bold text-white mb-3">Analytics: All Hubs</h1>
+                            <div class="flex items-center gap-4">
+                                <select class="bg-zinc-900 border border-zinc-700 text-white px-4 py-2 rounded-lg text-sm">
+                                    <option>Last 7 days</option>
+                                    <option>Last 30 days</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="px-5 py-2.5 bg-green-500 hover:bg-green-600 rounded-lg text-sm text-white font-medium flex items-center gap-2">
+                            <i class="fas fa-download"></i>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-8 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div id="viewsCard" class="text-4xl font-bold text-white mb-1">0</div>
+                        <div class="text-sm text-gray-400">Views</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div id="clicksCard" class="text-4xl font-bold text-white mb-1">0</div>
+                        <div class="text-sm text-gray-400">Clicks</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div id="ctrCard" class="text-4xl font-bold text-white mb-1">0%</div>
+                        <div class="text-sm text-gray-400">CTR</div>
+                    </div>
+                    <div class="stat-card bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <div id="mobilePct" class="text-4xl font-bold text-white mb-1">0%</div>
+                        <div class="text-sm text-gray-400">Mobile</div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-bold text-white mb-6">Traffic Over Time</h2>
+                    <canvas id="trafficChart" height="80"></canvas>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-6">Top Performing Links</h2>
+                        <div id="topLinksContainer" class="space-y-4">Loading...</div>
+                    </div>
+
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-6">Devices</h2>
+                        <div id="devicesContainer" class="space-y-4">Loading...</div>
+                    </div>
+
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-6">Top Countries</h2>
+                        <div id="countriesContainer" class="space-y-4">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-bold text-white mb-6">Link Performance Details</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-zinc-800 text-left text-gray-400 text-sm">
+                                    <th class="py-3 px-4">Link</th>
+                                    <th class="py-3 px-4 text-right">Views</th>
+                                    <th class="py-3 px-4 text-right">Clicks</th>
+                                    <th class="py-3 px-4 text-right">CTR</th>
+                                </tr>
+                            </thead>
+                            <tbody id="performanceTableBody">
+                                <tr><td colspan="4" class="py-8 text-center text-gray-500">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-6">Traffic Sources</h2>
+                        <div id="trafficSourcesContainer" class="space-y-4">Loading...</div>
+                    </div>
+
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+                        <h2 class="text-xl font-bold text-white mb-4">Peak Hours</h2>
+                        <div id="peakHoursInfo" class="mb-4"></div>
+                        <canvas id="peakHoursChart" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modalContainer"></div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar')?.classList.toggle('active');
+            document.querySelector('.sidebar-overlay')?.classList.toggle('active');
+        }
+
+        // Initialize Popup
+        fetch('../Popup/index.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('modalContainer').innerHTML = html;
+                const script = document.createElement('script');
+                script.src = '../Popup/script.js';
+                document.body.appendChild(script);
+            });
+    </script>
+</body>
+</html>

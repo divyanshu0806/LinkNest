@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - Linker</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-black text-gray-100">
+
+<div class="dashboard">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="p-5">
+            <div class="flex items-center gap-2 mb-8">
+                    <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                      <span class="font-bold text-xl text-black">S</span>
+                    </div>
+
+                    <span class="text-xl font-bold text-white">SmartLinkX</span>
+                </div>
+
+            <div class="text-xs text-gray-500 mb-2 px-3">Dashboard</div>
+
+            <nav class="space-y-1">
+                <a href="../HomePage/index.html"
+                   class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                    <i class="fas fa-chart-bar w-5"></i>
+                    <span class="text-sm">Overview</span>
+                </a>
+
+                <a href="../Analytics/index.html"
+                   class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                    <i class="fas fa-chart-line w-5"></i>
+                    <span class="text-sm">Analytics</span>
+                </a>
+
+                <a href="../MyHubs/index.html"
+                   class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-zinc-900 hover:text-white transition-all">
+                    <i class="fas fa-link w-5"></i>
+                    <span class="text-sm">My Hubs</span>
+                </a>
+
+                <a href="../AccountSettings/index.html"
+                   class="nav-item active flex items-center gap-3 px-3 py-2.5 rounded-lg bg-green-500 bg-opacity-10 text-green-500">
+                    <i class="fas fa-cog w-5"></i>
+                    <span class="text-sm font-medium">Account Settings</span>
+                </a>
+            </nav>
+
+            <button id="createHubBtn"
+                class="w-full mt-6 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 font-medium text-sm">
+                <i class="fas fa-plus"></i>
+                <span>Create New Hub</span>
+            </button>
+            <div class="mt-auto">
+            <!-- Logout -->
+<button id="logoutBtn"
+    class="w-full mt-3 border border-zinc-700 text-gray-300 hover:bg-red-600 hover:border-red-600 hover:text-white px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm mt-16">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Log Out</span>
+</button>
+
+        </div>
+        </div>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- ===== MAIN ===== -->
+    <main class="min-h-screen">
+
+        <!-- Header -->
+        <div class="border-b border-zinc-800 bg-black sticky top-0 z-40">
+            <div class="px-8 py-5">
+                <div class="flex justify-between items-center gap-4">
+
+                    <!-- Mobile menu -->
+                    <button onclick="toggleSidebar()" class="md:hidden text-xl text-gray-300">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="flex items-center gap-4">
+                        <h1 class="text-2xl font-bold text-white">Account Settings</h1>
+                    </div>
+
+                   <button
+                    type="button"
+                    class="save-changes-btn px-6 py-2.5 bg-green-500 hover:bg-green-600 rounded-lg text-sm text-white font-medium">
+                    Save Changes
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="px-8 py-6">
+            <!-- Two Column Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Left Column -->
+                <div class="space-y-6">
+                    <!-- Profile Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <h2 class="text-lg font-bold text-white mb-5">Profile</h2>
+                        
+                        <!-- Profile Picture -->
+                        <div class="flex items-start gap-4 mb-5">
+                            <div class="profile-picture w-20 h-20 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
+                                V
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-300 mb-2">Profile Picture</h3>
+                                <button class="profile-picture-upload bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all">
+                                    Upload New Picture
+                                </button>
+                                <p class="text-xs text-gray-500 mt-2">JPG, PNG or GIF. Max size 2MB</p>
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" value="Vinayak" class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500">
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Bio</label>
+                            <textarea rows="3" class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500">Content creator & link manager enthusiast</textarea>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-0">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" value="vinayak@example.com" class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <!-- Preferences Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <h2 class="text-lg font-bold text-white mb-5">Preferences</h2>
+                        
+                        <!-- Timezone -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Timezone</label>
+                            <div class="relative">
+                                <select class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500 appearance-none cursor-pointer">
+                                    <option>Asia/Kolkata (IST)</option>
+                                    <option>America/New_York (EST)</option>
+                                    <option>Europe/London (GMT)</option>
+                                    <option>Asia/Tokyo (JST)</option>
+                                </select>
+                                <i class="fas fa-chevron-down text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Date Format -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Date Format</label>
+                            <div class="relative">
+                                <select class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500 appearance-none cursor-pointer">
+                                    <option>DD/MM/YYYY</option>
+                                    <option>MM/DD/YYYY</option>
+                                    <option>YYYY-MM-DD</option>
+                                </select>
+                                <i class="fas fa-chevron-down text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Language -->
+                        <div class="mb-0">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Language</label>
+                            <div class="relative">
+                                <select class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500 appearance-none cursor-pointer">
+                                    <option>English</option>
+                                    <option>Spanish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Hindi</option>
+                                </select>
+                                <i class="fas fa-chevron-down text-gray-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- API Access Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-5">
+                            <h2 class="text-lg font-bold text-white">API Access</h2>
+                            <span class="bg-purple-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">Bonus</span>
+                        </div>
+                        
+                        <!-- API Key -->
+                        <div class="mb-5 pb-5 border-b border-zinc-800">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-white font-medium text-sm">API Key</h3>
+                                <button class="regenerate-api-key bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all">
+                                    Regenerate Key
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-2 bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2.5">
+                                <code class="api-key-code flex-1 text-gray-300 text-xs font-mono">sk_live_abc123xyz789...</code>
+                                <button class="copy-api-key text-gray-400 hover:text-white transition-colors">
+                                    <i class="far fa-copy text-sm"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">Keep this key secret. It gives full access to your account.</p>
+                        </div>
+
+                        <!-- API Documentation -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-white font-medium text-sm mb-1">API Documentation</h3>
+                                <p class="text-xs text-gray-400">Learn how to integrate LINKER with your apps</p>
+                            </div>
+                            <button class="border border-zinc-700 hover:border-zinc-600 text-gray-300 px-3 py-2 rounded-lg text-xs transition-all">
+                                View Docs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-6">
+                    <!-- Notifications Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <h2 class="text-lg font-bold text-white mb-5">Notifications</h2>
+                        
+                        <!-- Weekly Analytics Report -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="weekly-report" checked class="w-5 h-5 mt-0.5 rounded bg-zinc-900 border-zinc-700 text-green-500 focus:ring-green-500 focus:ring-offset-0 cursor-pointer">
+                                <div>
+                                    <label for="weekly-report" class="text-white font-medium text-sm cursor-pointer">Weekly Analytics Report</label>
+                                    <p class="text-xs text-gray-400 mt-1">Get a summary of your link performance every week</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- High Traffic Alert -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="traffic-alert" checked class="w-5 h-5 mt-0.5 rounded bg-zinc-900 border-zinc-700 text-green-500 focus:ring-green-500 focus:ring-offset-0 cursor-pointer">
+                                <div>
+                                    <label for="traffic-alert" class="text-white font-medium text-sm cursor-pointer">High Traffic Alert</label>
+                                    <p class="text-xs text-gray-400 mt-1">Get notified when a link reaches 100+ clicks</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Country Alert -->
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="country-alert" class="w-5 h-5 mt-0.5 rounded bg-zinc-900 border-zinc-700 text-green-500 focus:ring-green-500 focus:ring-offset-0 cursor-pointer">
+                                <div>
+                                    <label for="country-alert" class="text-white font-medium text-sm cursor-pointer">New Country Alert</label>
+                                    <p class="text-xs text-gray-400 mt-1">Get notified when someone from a new country visits</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <h2 class="text-lg font-bold text-white mb-5">Security</h2>
+                        
+                        <!-- Password -->
+                        <div class="flex items-center justify-between mb-5 pb-5 border-b border-zinc-800">
+                            <div>
+                                <h3 class="text-white font-medium text-sm mb-1">Password</h3>
+                                <p class="text-xs text-gray-400">Last changed 3 months ago</p>
+                            </div>
+                            <button class="change-password-btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all">
+                                Change Password
+                            </button>
+                        </div>
+
+                        <!-- Two-Factor Authentication -->
+                        <div class="flex items-center justify-between mb-5 pb-5 border-b border-zinc-800">
+                            <div>
+                                <h3 class="text-white font-medium text-sm mb-1">Two-Factor Authentication</h3>
+                                <p class="text-xs text-gray-400">Add an extra layer of security to your account</p>
+                            </div>
+                            <button class="enable-2fa-btn bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all">
+                                Enable 2FA
+                            </button>
+                        </div>
+
+                        <!-- Active Sessions -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-white font-medium text-sm mb-1">Active Sessions</h3>
+                                <p class="text-xs text-gray-400">Manage devices that are currently logged in</p>
+                            </div>
+                            <button class="border border-zinc-700 hover:border-zinc-600 text-gray-300 px-3 py-2 rounded-lg text-xs transition-all">
+                                View Sessions
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Danger Zone Section -->
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-5">
+                        <h2 class="text-lg font-bold text-white mb-2">Danger Zone</h2>
+                        <p class="text-xs text-gray-400 mb-5">These actions are permanent and cannot be undone. Please proceed with caution.</p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button class="export-data-btn border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-3 py-2 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm">
+                                <i class="fas fa-download"></i>
+                                Export All Data
+                            </button>
+                            <button class="delete-account-btn border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-3 py-2 rounded-lg flex items-center justify-center gap-2 transition-all font-medium text-sm">
+                                <i class="fas fa-trash"></i>
+                                Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Popup Modal Styles -->
+    <link rel="stylesheet" href="../Popup/style.css">
+
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+
+    <script src="script.js"></script>
+
+    <!-- Load and Initialize Popup -->
+    <script>
+    // Load the popup HTML
+    fetch('../Popup/index.html')
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const modal = doc.querySelector('#createHubModal');
+
+            if (modal) {
+                document.getElementById('modalContainer').appendChild(modal);
+
+                const script = document.createElement('script');
+                script.src = '../Popup/script.js';
+                document.body.appendChild(script);
+
+                script.onload = function () {
+                    const createBtn = document.getElementById('createHubBtn');
+
+                    if (createBtn) {
+                        createBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    // Close sidebar on mobile (if open)
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+
+    // Open popup
+    if (window.openHubModal) {
+        window.openHubModal();
+    } else {
+        console.error('openHubModal not found');
+    }
+});
+
+                    } else {
+                        console.error('createHubBtn not found');
+                    }
+                };
+            }
+        })
+        .catch(error => console.error('Error loading modal:', error));
+
+    function toggleSidebar() {
+        document.querySelector('.sidebar')?.classList.toggle('active');
+        document.querySelector('.sidebar-overlay')?.classList.toggle('active');
+    }
+</script>
+</body>
+</html>
