@@ -1,4 +1,4 @@
-# SmartLinkX 🚀
+# LinkNest 🚀
 
 A smart single-link hub platform (like Linktree, but smarter) that lets users create hubs of multiple links with advanced rules such as time-based and device-based visibility.
 
