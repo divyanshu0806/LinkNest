@@ -64,8 +64,8 @@ A smart single-link hub platform (like Linktree, but smarter) that lets users cr
 ### 1️. Clone Repository
 
 ```bash
-git clone https://github.com/lucifer77h/link-maker
-cd D:\link-maker\.qodo\Backend
+git clone https://github.com/divyanshu0806/LinkNest
+cd D:\LinkNest\.qodo\Backend
 
 
 
