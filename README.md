@@ -66,7 +66,7 @@ A smart single-link hub platform (like Linktree, but smarter) that lets users cr
 
 ```bash
 git clone https://github.com/divyanshu0806/LinkNest
-cd D:\link-maker\.qodo\Backend
+cd D:\LinkNest\.qodo\Backend
 
 
 
