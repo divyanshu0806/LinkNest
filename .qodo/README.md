@@ -294,21 +294,6 @@ In production, the system would be deployed to a cloud server with:
 
 ---
 
-##  Authors
-
-TEAM UR4NIUM
-
-DESIGN
-Vinayak aggarwal
-
-FRONTEND 
-Saksham 
-Gurpreet
-
-BACKEND
-Daksh wadhwa
-Hitesh Singh(Team leader)
-
 ---
 
 ##  License
